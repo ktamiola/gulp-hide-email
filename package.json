@@ -1,7 +1,7 @@
 {
   "name": "gulp-hide-email",
   "version": "0.1.0",
-  "description": "A robust gulp email obfuscation plugin wtih the support for streaming and file buffers. The plugin replaces all the content between the <a href=mailto></a> tags with HTML5 compatible inline JavaScript.",
+  "description": "A robust gulp email obfuscation plugin wtih the support for streaming and file buffers.",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
@@ -16,6 +16,13 @@
   ],
   "author": "Kamil Tamiola <kamil@tamiola.com>",
   "license": "MIT",
+  "repository": {
+   "type": "git",
+   "url": "git://github.com/ktamiola/gulp-hide-email.git"
+ },
+ "bugs": {
+    "url": "https://github.com/ktamiola/gulp-hide-email/issues"
+  },
   "devDependencies": {
     "concat-stream": "^1.5.1",
     "escape-string-regexp": "^1.0.5",

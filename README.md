@@ -1,5 +1,5 @@
 # gulp-hide-email
- A robust gulp email obfuscation plugin with the support for streaming and file buffers. The plugin replaces all the content between the ``<a href=mailto></a>`` tags with **HTML5 compatible inline JavaScript**.
+ A robust gulp email obfuscation plugin with the support for streaming and file buffers.
 
 `gulp-hide-email` can process the most common HTML5 `mailto` cases including:
 
