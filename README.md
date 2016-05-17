@@ -8,7 +8,7 @@
 ```
 after processing becomes,
 ```javascript
-<span id=""><script>document.getElementById("").innerHTML='<n uers="znvygb:wbua@nccyrfrrq.pbz?fhowrpg=Wbo%20Nccyvpngvba">Nccyl abj</n>'.replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);});document.body.appendChild(eo);</script></span>
+<span id=""><script>document.getElementById("").innerHTML='<n uers="znvygb:wbua@nccyrfrrq.pbz?fhowrpg=Wbo%20Nccyvpngvba">Nccyl abj</n>'.replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);});</script></span>
 ```
 and some relatively nested cases, with multiple DOM elements in-between the `<a></a>` tags:
 ```html
@@ -16,7 +16,7 @@ and some relatively nested cases, with multiple DOM elements in-between the `<a>
 ```
 which after processing should have the following form:
 ```javascript
-<span id=""><script>document.getElementById("").innerHTML='<n uers="znvygb:wbua@nccyrfrrq.pbz?fhowrpg=Wbo%20Nccyvpngvba"><fcna vq="fbzrguvat" pynff="k1 k2 k3" fglyr="cnqqvat-obggbz: -20ck;"><qvi>Grfg</qvi></fcna></n>'.replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);});document.body.appendChild(eo);</script></span>
+<span id=""><script>document.getElementById("").innerHTML='<n uers="znvygb:wbua@nccyrfrrq.pbz?fhowrpg=Wbo%20Nccyvpngvba"><fcna vq="fbzrguvat" pynff="k1 k2 k3" fglyr="cnqqvat-obggbz: -20ck;"><qvi>Grfg</qvi></fcna></n>'.replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);});</script></span>
 ```
 
 ## Usage

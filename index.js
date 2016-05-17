@@ -23,13 +23,13 @@ String.prototype.encrypt = function() {
 String.prototype.findAndParseEncrypted = function(options) {
     return this.replace(regex, function(data) {
         var id = (options && options.test) ? "" : cuid();
-        return "<span id=\"" + id + "\"><script>document.getElementById(\"" + id + "\").innerHTML=\'" + data.encrypt().replace(/(?:\r\n|\t\n|\t\r|\r|\n|\t)/g, " ") + "\'.replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c<=\"Z\"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);});document.body.appendChild(eo);</script></span>";
+        return "<span id=\"" + id + "\"><script>document.getElementById(\"" + id + "\").innerHTML=\'" + data.encrypt().replace(/(?:\r\n|\t\n|\t\r|\r|\n|\t)/g, " ") + "\'.replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c<=\"Z\"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);});</script></span>";
     });
 };
 String.prototype.parseEncrypted = function(options) {
     return this.replace(this, function(data) {
         var id = (options && options.test) ? "" : cuid();
-        return "<span id=\"" + id + "\"><script>document.getElementById(\"" + id + "\").innerHTML=\'" + data.encrypt().replace(/(?:\r\n|\t\n|\t\r|\r|\n|\t)/g, " ") + "\'.replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c<=\"Z\"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);});document.body.appendChild(eo);</script></span>";
+        return "<span id=\"" + id + "\"><script>document.getElementById(\"" + id + "\").innerHTML=\'" + data.encrypt().replace(/(?:\r\n|\t\n|\t\r|\r|\n|\t)/g, " ") + "\'.replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c<=\"Z\"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);});</script></span>";
     });
 };
 
