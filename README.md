@@ -46,7 +46,7 @@ gulp.task('templates', function(){
 
 ## API
 
-gulp-replace can be called with a string or regex.
+`gulp-hide-email` accepts options in a form of a typical JSON `Object`.
 
 #### options
 Type: `Object`
