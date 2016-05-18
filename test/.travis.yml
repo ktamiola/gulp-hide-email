@@ -1,0 +1,17 @@
+# This is a node package
+language: node_js
+
+# Test for node 4,5,6
+node_js:
+  - "6"
+  - "5"
+  - "4"
+
+# configure notifications (email, IRC, campfire etc)
+# please update this section to your needs!
+notifications:
+  email:
+    recipients:
+      - fora@tamiola.com
+    on_success: [always] # default: change
+    on_failure: [always] # default: always
