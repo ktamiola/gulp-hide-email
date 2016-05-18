@@ -1,4 +1,4 @@
-# gulp-hide-email
+# gulp-hide-email [![Build Status](https://travis-ci.org/ktamiola/gulp-hide-email.svg?branch=master)](https://travis-ci.org/ktamiola/gulp-hide-email)
  A robust gulp email obfuscation plugin with the support for streaming and file buffers.
 
 `gulp-hide-email` can process the most common HTML5 `mailto` cases including:
