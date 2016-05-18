@@ -4,6 +4,9 @@ var Transform = require("readable-stream/transform");
 var objectAssign = require("object-assign");
 var cuid = require("cuid");
 
+// Counter
+var idCounter;
+
 // What are we looking for?
 var regex = /\<a([^>]+)href\=\"mailto\:([^">]+)\"([^>]*)\>([\s\S]*?)\<\/a\>/ig;
 
@@ -23,12 +26,22 @@ String.prototype.encrypt = function() {
 String.prototype.findAndParseEncrypted = function(options) {
     return this.replace(regex, function(data) {
         var id = (options && options.test) ? "" : cuid();
+        id = (options && options.idPrefix) ? options.idPrefix.toString() + idCounter : id;
+        if (options && options.verbose) {
+            console.log(" - obfuscate [" + idCounter + "] new DOM element id=" + id + " source HTML: " + data);
+        }
+        idCounter++;
         return "<span id=\"" + id + "\"><script>document.getElementById(\"" + id + "\").innerHTML=\'" + data.encrypt().replace(/(?:\r\n|\t\n|\t\r|\r|\n|\t)/g, " ") + "\'.replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c<=\"Z\"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);});</script></span>";
     });
 };
 String.prototype.parseEncrypted = function(options) {
     return this.replace(this, function(data) {
         var id = (options && options.test) ? "" : cuid();
+        id = (options && options.idPrefix) ? options.idPrefix.toString() + idCounter : id;
+        if (options && options.verbose) {
+            console.log(" - obfuscate [" + idCounter + "] new DOM element id=" + id + " source HTML: " + data);
+        }
+        idCounter++;
         return "<span id=\"" + id + "\"><script>document.getElementById(\"" + id + "\").innerHTML=\'" + data.encrypt().replace(/(?:\r\n|\t\n|\t\r|\r|\n|\t)/g, " ") + "\'.replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c<=\"Z\"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);});</script></span>";
     });
 };
@@ -133,11 +146,13 @@ module.exports = function(options) {
             function obfuscate() {
                 // If we are dealing with the stream
                 if (file.isStream()) {
+                    idCounter = 1;
                     file.contents = file.contents.pipe(parseEncryptedInStream(options));
                     return callback(null, file);
                 }
                 // If we are dealing with a typical buffer
                 if (file.isBuffer()) {
+                    idCounter = 1;
                     file.contents = new Buffer(String(file.contents).findAndParseEncrypted(options));
                     return callback(null, file);
                 }
