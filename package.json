@@ -12,7 +12,8 @@
     "obfuscate",
     "email",
     "encrypt",
-    "mailto"
+    "mailto",
+    "inline"
   ],
   "author": "Kamil Tamiola <kamil@tamiola.com>",
   "license": "MIT",

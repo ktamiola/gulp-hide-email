@@ -1,8 +1,8 @@
 # gulp-hide-email
 
-A robust gulp email obfuscation plugin with the support for streaming and file buffers.
+A robust gulp email obfuscation (pseudo-encryption) plugin with the support for streaming and file buffers. `gulp-hide-email` automatically detects email links and replaces them with efficient inline JavaScript.
 
-[![Build Status](https://travis-ci.org/ktamiola/gulp-hide-email.svg?branch=master)](https://travis-ci.org/ktamiola/gulp-hide-email)
+[![Build Status](https://travis-ci.org/ktamiola/gulp-hide-email.svg?branch=master)](https://travis-ci.org/ktamiola/gulp-hide-email) [![npm version](https://badge.fury.io/js/gulp-hide-email.svg)](https://badge.fury.io/js/gulp-hide-email)
 
 `gulp-hide-email` can process the most common HTML5 `mailto` cases including:
 
@@ -16,7 +16,7 @@ which after processing becomes,
   </script>
 </span>
 ```
-`gulp-hide-email` can also handle heavily nested cases with multiple DOM elements in-between the `<a>...</a>` tags, e.g.
+Heavily nested cases with multiple DOM elements in-between the `<a>...</a>` tags can also be processed,
 ```html
 <a href="mailto:john@appleseed.com?subject=Job%20Application">
   <span id="something" class="x1 x2 x3" style="padding-bottom: -20px;">
@@ -24,7 +24,7 @@ which after processing becomes,
   </span>
 </a>
 ```
-which after processing should have the following form:
+yielding,
 ```javascript
 <span id="">
   <script>document.getElementById("").innerHTML='<n uers="znvygb:wbua@nccyrfrrq.pbz?fhowrpg=Wbo%20Nccyvpngvba"><fcna vq="fbzrguvat" pynff="k1 k2 k3" fglyr="cnqqvat-obggbz: -20ck;"><qvi>Grfg</qvi></fcna></n>'.replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);});
@@ -77,7 +77,7 @@ Default: `null`
 Generate custom DOM `id` tags, labeled in a sequential order for the inline JavaScript code. _This option may come in handy, when you want to do some extra operations on the "injected" JavaScript code, and need to know the DOM `id` tags a priori. By default, `gulp-hide-email` generates random labels._
 
 ```javascript
-    .pipe(obfuscateEmail({ idPrefix:"obfuscate_" }))
+.pipe(obfuscateEmail({ idPrefix:"obfuscate_" }))
 ```
 will yield,
 ```javascript
@@ -91,7 +91,7 @@ Default: `false`
 Produce detailed output from obfuscation. _Useful for debugging and supervision, especially when you deal with multiple `mailto:` instances and you want to see what went into `gulp-hide-email`._
 
 ```javascript
-    .pipe(obfuscateEmail({ verbose:true }))
+.pipe(obfuscateEmail({ verbose:true }))
 ```
 
 ##### options.test
