@@ -1,8 +1,8 @@
 # gulp-hide-email
 
-A robust gulp email obfuscation (pseudo-encryption) plugin with the support for streaming and file buffers. `gulp-hide-email` automatically detects email links and replaces them with efficient inline JavaScript.
-
 [![Build Status](https://travis-ci.org/ktamiola/gulp-hide-email.svg?branch=master)](https://travis-ci.org/ktamiola/gulp-hide-email) [![npm version](https://badge.fury.io/js/gulp-hide-email.svg)](https://badge.fury.io/js/gulp-hide-email)
+
+A robust gulp email obfuscation (pseudo-encryption) plugin with the support for streaming and file buffers. `gulp-hide-email` automatically detects email links and replaces them with efficient, non-blocking inline JavaScript.
 
 `gulp-hide-email` can process the most common HTML5 `mailto` cases including:
 
@@ -31,7 +31,7 @@ yielding,
   </script>
 </span>
 ```
-
+The resultant JavaScript is efficient and unobtrusive, hence you should not observe any noticeable drop in rendering performance, nor render-blocking behavior. Please check [http://www.tamiola.com](http://www.tamiola.com) for working **demo**. We have replaced multiple `mailto:` instances on our page.
 ## Usage
 
 First, install `gulp-hide-email` as a development dependency:
