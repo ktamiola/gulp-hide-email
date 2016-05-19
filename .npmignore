@@ -1,3 +1,5 @@
 test/
+.coverage/
 .DS_store
 .travis.yml
+.coveralls.yml
