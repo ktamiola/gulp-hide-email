@@ -15,3 +15,6 @@ notifications:
       - fora@tamiola.com
     on_success: [always] # default: change
     on_failure: [always] # default: always
+
+# Needed to enable coveralls compilation
+repo_token: aOxEf4WFOjlGQkUpYRef664oO89F0SpwX

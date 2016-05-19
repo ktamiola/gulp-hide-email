@@ -1,6 +1,6 @@
 # gulp-hide-email
 
-[![Build Status](https://travis-ci.org/ktamiola/gulp-hide-email.svg?branch=master)](https://travis-ci.org/ktamiola/gulp-hide-email) [![npm version](https://badge.fury.io/js/gulp-hide-email.svg)](https://badge.fury.io/js/gulp-hide-email)
+[![Build Status](https://travis-ci.org/ktamiola/gulp-hide-email.svg?branch=master)](https://travis-ci.org/ktamiola/gulp-hide-email) [![npm version](https://badge.fury.io/js/gulp-hide-email.svg)](https://badge.fury.io/js/gulp-hide-email) [![Coverage Status](https://coveralls.io/repos/github/ktamiola/gulp-hide-email/badge.svg?branch=master)](https://coveralls.io/github/ktamiola/gulp-hide-email?branch=master)
 
 A robust gulp email obfuscation (pseudo-encryption) plugin with the support for streaming and file buffers. `gulp-hide-email` automatically detects email links and replaces them with efficient, non-blocking inline JavaScript.
 
