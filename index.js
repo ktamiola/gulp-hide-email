@@ -9,6 +9,9 @@ var idCounter;
 
 // What are we looking for?
 var regex = /\<a([^>]+)href\=\"mailto\:([^">]+)\"([^>]*)\>([\s\S]*?)\<\/a\>/ig;
+var protocolRegex = function(protocol) {
+    return new RegExp('/\<a([^>]+)href\=\"' + protocol + '\:([^" > ] + )\"([^>]*)\>([\s\S]*?)\<\/a\>/ig');
+};
 
 // The encryptor block
 String.prototype.unpack = function() {
