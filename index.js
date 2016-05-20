@@ -13,10 +13,6 @@ var protocolRegex = function(protocol) {
     return new RegExp('/\<a([^>]+)href\=\"' + protocol + '\:([^" > ] + )\"([^>]*)\>([\s\S]*?)\<\/a\>/ig');
 };
 
-// The encryptor block
-String.prototype.unpack = function() {
-    return this.split("").reverse().join("");
-};
 String.prototype.encrypt = function() {
     return this.replace(/[a-zA-Z]/ig, function(chr) {
         var cc = chr.charCodeAt(0);
