@@ -9,9 +9,9 @@ var idCounter;
 
 // What are we looking for?
 var regex = /\<a([^>]+)href\=\"mailto\:([^">]+)\"([^>]*)\>([\s\S]*?)\<\/a\>/ig;
-var protocolRegex = function(protocol) {
-    return new RegExp('/\<a([^>]+)href\=\"' + protocol + '\:([^" > ] + )\"([^>]*)\>([\s\S]*?)\<\/a\>/ig');
-};
+// var protocolRegex = function(protocol) {
+    // return new RegExp('/\<a([^>]+)href\=\"' + protocol + '\:([^" > ] + )\"([^>]*)\>([\s\S]*?)\<\/a\>/ig');
+// };
 
 String.prototype.encrypt = function() {
     return this.replace(/[a-zA-Z]/ig, function(chr) {
@@ -137,11 +137,6 @@ module.exports = function(options) {
     return new Transform({
         objectMode: true,
         transform: function(file, encoding, callback) {
-            // Nothing to pass? Goodbye!
-            if (file.isNull()) {
-                return callback(null, file);
-            }
-            // The core function
             function obfuscate() {
                 // If we are dealing with the stream
                 if (file.isStream()) {

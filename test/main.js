@@ -5,6 +5,12 @@ var obfuscateEmail = require('../');
 var fs = require('fs');
 var should = require('should');
 var File = require('vinyl');
+var sinonChai = require('sinon-chai');
+var sinon = require('sinon');
+var chai = require('chai');
+var expect = chai.expect;
+
+chai.use(sinonChai);
 
 describe('gulp-hide-email', function() {
 
@@ -15,90 +21,49 @@ describe('gulp-hide-email', function() {
     };
 
     describe('for any type of input', function() {
-        var file, check, hook;
+        var file, check;
 
-        var captureStream = function(stream) {
-            var oldWrite = stream.write;
-            var buf = '';
-            stream.write = function(chunk, encoding, callback) {
-                buf += chunk.toString(); // chunk is a String or Buffer
-                oldWrite.apply(stream, arguments);
-            }
-            return {
-                unhook: function unhook() {
-                    stream.write = oldWrite;
-                },
-                captured: function() {
-                    return buf;
-                }
-            };
-        };
-
-        beforeEach(function() {
+        it('should fallback gracefully if no file has been served', function(done) {
+            // a path to non-existient file
             file = new File({
                 path: 'test/fixtures/idontexist.html',
                 contents: ""
             });
-            // Used for the console verbose debugging
-            // hook = captureStream(process.stdout);
-        });
-
-
-        check = function(stream, done, callback) {
-            stream.on('data', function(newFile) {
-                newFile.contents.pipe(concatStream({
-                    encoding: 'string'
-                }, function(data) {
-                    callback(data);
-                    done();
-                }));
-            });
-
-            stream.write(file);
-            stream.end();
-        };
-
-        it('should fallback gracefully if no file has been served', function(done) {
             options.verbose = false;
             var stream = obfuscateEmail(options);
-
             stream.on('finish', function() {
                 done();
             });
             stream.end();
-
         });
 
-        it('should generate human readable output if option.verbose is true', function(done) {
+        before(function() {
+
+            sinon.spy(console, 'log');
 
             file = new File({
                 path: 'test/fixtures/index.html',
                 contents: fs.readFileSync('test/fixtures/index.html')
             });
 
-            options.verbose = true;
-            var stream = obfuscateEmail(options);
+            check = function(stream, done, callback) {
+                stream.on('data', function(newFile) {
+                    callback(newFile);
+                    done();
+                });
 
-            stream.on('finish', function() {
-                // console.log('test');
-                // hook.unhook();
-                // console.log('Hook:'+hook.captured());
-                done();
-            });
-            stream.end();
-
+                stream.write(file);
+                stream.end();
+            };
         });
 
-        it('should use automatic random DOM tags', function(done) {
-            options.verbose = true;
-            options.test = false;
-            var stream = obfuscateEmail(options);
+        it.skip('should generate human readable output if option.verbose is true', function(done) {
+
+            var stream = obfuscateEmail();
 
             stream.on('finish', function() {
-                // console.log('test');
-                // hook.unhook();
-                // console.log('Hook:'+hook.captured());
-                done();
+                expect(console.log).to.be.called;
+                // done();
             });
             stream.end();
 
@@ -157,6 +122,21 @@ describe('gulp-hide-email', function() {
             stream.write(file);
             stream.end();
         });
+
+        it('should use random automatic DOM tags', function(done) {
+
+            options.verbose = false;
+            options.test = false;
+
+            var stream = obfuscateEmail(options);
+
+            check(stream, done, function(newFile) {
+                String(newFile.contents).should.match(/id="([^"]*?)".*?/ig);
+            });
+
+        });
+
+
     });
 
     describe('for streamed input', function() {
