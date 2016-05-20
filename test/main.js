@@ -39,6 +39,7 @@ describe('gulp-hide-email', function() {
 
         before(function() {
 
+            options.verbose = true;
             sinon.spy(console, 'log');
 
             file = new File({
@@ -49,7 +50,8 @@ describe('gulp-hide-email', function() {
             check = function(stream, done, callback) {
                 stream.on('data', function(newFile) {
                     callback(newFile);
-                    done();
+                    expect(console.log).to.be.called;
+                    // done();
                 });
 
                 stream.write(file);
@@ -57,15 +59,18 @@ describe('gulp-hide-email', function() {
             };
         });
 
+        after(function() {
+            // console.log.restore();
+        });
+
         it.skip('should generate human readable output if option.verbose is true', function(done) {
 
-            var stream = obfuscateEmail();
+            options.verbose = true;
+            var stream = obfuscateEmail(options);
 
-            stream.on('finish', function() {
-                expect(console.log).to.be.called;
-                // done();
+            check(stream, done, function(newFile) {
+
             });
-            stream.end();
 
         });
 
@@ -73,7 +78,6 @@ describe('gulp-hide-email', function() {
 
     describe('for simualted buffered input', function() {
         var file, check;
-        options.verbose = false;
 
         beforeEach(function() {
             file = new File({
