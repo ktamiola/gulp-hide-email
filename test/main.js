@@ -40,7 +40,7 @@ describe('gulp-hide-email', function() {
         before(function() {
 
             options.verbose = true;
-            sinon.spy(console, 'log');
+            // sinon.spy(console, 'log');
 
             file = new File({
                 path: 'test/fixtures/index.html',
@@ -50,7 +50,7 @@ describe('gulp-hide-email', function() {
             check = function(stream, done, callback) {
                 stream.on('data', function(newFile) {
                     callback(newFile);
-                    expect(console.log).to.be.called;
+                    // expect(console.log).to.be.called;
                     // done();
                 });
 
@@ -94,6 +94,15 @@ describe('gulp-hide-email', function() {
                 stream.write(file);
                 stream.end();
             };
+
+            // spy on the console
+            // sinon.spy(console, 'log');
+
+        });
+
+        afterEach(function() {
+            // disable spy
+            // console.log.restore();
         });
 
         it('should obfuscate <a href="mailto:xxx@xxx.xxx">...</a>', function(done) {
@@ -139,7 +148,6 @@ describe('gulp-hide-email', function() {
             });
 
         });
-
 
     });
 
