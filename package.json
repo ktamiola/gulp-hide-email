@@ -1,6 +1,6 @@
 {
   "name": "gulp-hide-email",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A robust gulp email obfuscation plugin wtih the support for streaming and file buffers.",
   "main": "index.js",
   "scripts": {
