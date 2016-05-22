@@ -1,6 +1,6 @@
 # gulp-hide-email
 
-[![Build Status](https://travis-ci.org/ktamiola/gulp-hide-email.svg?branch=master)](https://travis-ci.org/ktamiola/gulp-hide-email) [![npm version](https://badge.fury.io/js/gulp-hide-email.svg)](https://badge.fury.io/js/gulp-hide-email) [![Dependencies](https://david-dm.org/ktamiola/gulp-hide-email.svg)](https://david-dm.org/ktamiola/gulp-hide-email) [![Coverage Status](https://coveralls.io/repos/github/ktamiola/gulp-hide-email/badge.svg?branch=master)](https://coveralls.io/github/ktamiola/gulp-hide-email?branch=master)
+[![Build Status](https://travis-ci.org/ktamiola/gulp-hide-email.svg?branch=master)](https://travis-ci.org/ktamiola/gulp-hide-email) [![npm version](https://badge.fury.io/js/gulp-hide-email.svg)](https://badge.fury.io/js/gulp-hide-email) [![npm](https://img.shields.io/npm/dm/gulp-hide-email.svg?maxAge=2592000)](https://www.npmjs.com/package/gulp-hide-email) [![Dependencies](https://david-dm.org/ktamiola/gulp-hide-email.svg)](https://david-dm.org/ktamiola/gulp-hide-email) [![Coverage Status](https://coveralls.io/repos/github/ktamiola/gulp-hide-email/badge.svg?branch=master)](https://coveralls.io/github/ktamiola/gulp-hide-email?branch=master)
 
 A robust email obfuscation (pseudo-encryption) plugin with the support for streaming and file buffers, perfectly suited for complex **gulp** tasks. `gulp-hide-email` automatically detects email links and replaces them with efficient, non-blocking inline JavaScript.
 
