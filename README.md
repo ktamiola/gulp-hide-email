@@ -16,7 +16,7 @@ which after processing becomes,
   </script>
 </span>
 ```
-Heavily nested cases with multiple DOM elements in-between the `<a>...</a>` tags can also be processed,
+`gulp-hide-email` is perfectly suited for heavily nested cases with multiple DOM elements in-between the `<a>...</a>` e.g.
 ```html
 <a href="mailto:john@appleseed.com?subject=Job%20Application">
   <span id="something" class="x1 x2 x3" style="padding-bottom: -20px;">
@@ -24,14 +24,11 @@ Heavily nested cases with multiple DOM elements in-between the `<a>...</a>` tags
   </span>
 </a>
 ```
-yielding,
-```javascript
-<span id="">
-  <script>document.getElementById("").innerHTML='<n uers="znvygb:wbua@nccyrfrrq.pbz?fhowrpg=Wbo%20Nccyvpngvba"><fcna vq="fbzrguvat" pynff="k1 k2 k3" fglyr="cnqqvat-obggbz: -20ck;"><qvi>Grfg</qvi></fcna></n>'.replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);});
-  </script>
-</span>
-```
-The resultant JavaScript is efficient and unobtrusive, hence you should not observe any noticeable drop in the rendering performance, nor a render-blocking behavior. Please check [http://www.tamiola.com](http://www.tamiola.com) for working **demo**. We have replaced multiple `mailto:` instances on our page.
+
+The resultant JavaScript is efficient and unobtrusive, hence you should not observe any noticeable drop in the rendering performance, nor a render-blocking behavior.
+
+Please check [http://www.tamiola.com](http://www.tamiola.com) for working **demo**. Multiple `mailto:` instances have been effectively processed on our page.
+
 ## Usage
 
 First, install `gulp-hide-email` as a development dependency:
@@ -40,9 +37,11 @@ First, install `gulp-hide-email` as a development dependency:
 npm install --save-dev gulp-hide-email
 ```
 
-Then, add it to your `gulpfile.js`:
+Then, add it to your `gulpfile.js`.
 
 ### Email obfuscation
+This is an example workflow with the human-readable (`verbose:true`) output, so you can monitor what goes into `gulp-hide-email`.
+
 ```javascript
 var obfuscateEmail = require('gulp-hide-email');
 
@@ -53,16 +52,6 @@ gulp.task('obfuscate', function(){
     // End of Obfuscate Block
     .pipe(gulp.dest('build/index.html'));
 });
-```
-
-## Tests
-
-`gulp-hide-email` can be tested by firing `mocha`. I have implemented the most obvious testing scenarios, that include processing simulated file buffer, data stream and sending back event calls.
-
-In order to run the bundled tests and check the installation, simply execute,
-
-```javascript
-npm test
 ```
 
 ## API
